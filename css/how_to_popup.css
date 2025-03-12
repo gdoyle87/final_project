@@ -1,0 +1,43 @@
+#pop-up{
+	position:fixed;
+	top:0px;
+	left:0px;    
+	width:100vw;
+	height:100vh;    
+	z-index:1000;
+	background-color: hsla(var(--default-hue), 10%, 10%, 80%);
+	font-size:.85em;
+}
+#pop-up div{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%, -50%);
+	max-width:500px;
+	min-width:300px;
+	padding:10px;
+	border-radius:10px;
+	background-color: var(--bg-color1);
+	border: solid 1px white;
+	color:white;
+}
+
+#close-pop-up{
+	background-color: white;
+	color: #000;
+	border-radius: 50%;
+	font-weight: bold;
+	border:solid 3px #393939;
+	cursor:pointer;
+	position:absolute;
+	top:-10px;
+	right:-10px;
+}
+#close-pop-up:hover, 
+#close-pop-up:focus, 
+#close-pop-up:active{
+	background-color: #d9d9d9;
+	color:white;
+	transform: scale(1.3);
+}
+
