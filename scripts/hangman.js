@@ -37,7 +37,7 @@ function loadMap() {
         .catch(error => console.error("Error loading SVG:", error));
 }
 
-loadMap();
+// loadMap();
 function generateAnnexationOrder() {
     let provinces = ["AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL", "YT", "NT", "NU"];
     return provinces.sort(() => Math.random() - 0.5); 

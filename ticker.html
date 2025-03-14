@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+	<!-- Gary Doyle A00200132-->
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		>
+
+		<!-- Icons -->
+		<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+		<!-- Other Styles  -->
+		<link rel="stylesheet" href="/css/news.css" media="all">
+
+		<!-- JQuery -->
+		<script src="http://code.jquery.com/jquery-3.4.1.min.js" defer=""></script>
+
+		<!-- JS -->
+		<script src="/scripts/news.js" defer="defer"></script>
+
+		<title>Gary Doyle | Homepage</title>
+	</head>
+
+	<body>
+		<header class="header">
+			<a href="index.html" class="header__logo">
+				<!-- note to future me: if i remove viewBox in this svg here, browser defaults to 300x150 viewBox and adds a bunch of wasted space around svg. Such a headache figuring out what was going on... -->
+				<svg viewBox="0 0 347 130" height="40">
+					<use href="#gd_logo"></use>
+				</svg>
+			</a>
+			<nav class="nav">
+				<ul class="nav__list"></ul>
+			</nav>
+		</header>
+
+		<main>
+			<div id="news-container">
+				<div class="breaking">Breaking</div>
+				<div class="ticker">
+					<ul class="story-list ticker__inner">
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+					</ul>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<div class="footer">
+				<small> Copyright &copy; 2025 Gary Doyle A00200132</small>
+			</div>
+		</footer>
+
+		<!-- Inline SVG for the LOGO (which I created using figma).
+path instructions are inside a <symbol> tag so that it
+doesn't render here.    
+display:none so that it doesnt waste space.
+-->
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 347 130"
+			style="display: none"
+		>
+			<symbol id="gd_logo" fill="none">
+				<path
+					class="header__logo-name"
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M55 10H11V120H55V10ZM39.998 104.368C47.5566 104.368 51.3359 101.729 51.3359 96.4521C51.3359 93.6807 50.1882 91.651 47.8926 90.3633L51 89.1035V86.1431H29.479V95.1714H35.8618V93.1978H41.1318C42.1536 93.1978 42.9795 93.3307 43.6094 93.5967C44.2253 93.8486 44.5332 94.3665 44.5332 95.1504C44.5332 95.9062 44.2253 96.4172 43.6094 96.6831C42.9795 96.9351 42.1676 97.061 41.1738 97.061H23.2642C22.5783 97.061 21.9484 96.9281 21.3745 96.6621C20.8006 96.3822 20.5137 95.8153 20.5137 94.9614C20.5137 94.2756 20.7866 93.8276 21.3325 93.6177C21.8644 93.3937 22.5293 93.2817 23.3271 93.2817H26.6025V86.0591C23.8451 86.0591 21.5075 86.311 19.5898 86.8149C17.6722 87.3188 16.2165 88.2357 15.2227 89.5654C14.2148 90.8952 13.7109 92.8058 13.7109 95.2974C13.7109 101.344 17.1613 104.368 24.062 104.368H39.998ZM14.0469 80.6421L51 84.2114V77.0308L45.0371 76.5688V72.1177L51 71.5928V64.6011L14.0469 68.1074L14.0469 80.6421ZM39.1372 72.6846V76.0439L20.3457 74.6372V74.3013L39.1372 72.6846ZM14.0469 62.3335L51 62.3335V54.8589L34.1401 54.8589C34.1401 53.8791 34.2731 53.1722 34.5391 52.7383C34.791 52.2904 35.4559 52.0664 36.5337 52.0664L51 52.0664V44.7808L37.0166 44.7808C35.5609 44.7808 34.3781 45.0187 33.4683 45.4946C32.5444 45.9565 31.9635 46.7684 31.7256 47.9302C31.2637 46.5164 30.4308 45.5576 29.227 45.0537C28.0233 44.5358 26.4136 44.2769 24.3979 44.2769C22.3123 44.2769 20.4997 44.4448 18.96 44.7808C17.4062 45.1027 16.2025 45.7466 15.3486 46.7124C14.4808 47.6782 14.0469 49.106 14.0469 50.9956L14.0469 62.3335ZM27.7363 53.0322V54.8169H20.8916V53.0952C20.8916 52.4793 21.1156 52.0594 21.5635 51.8354C22.0114 51.6115 22.9562 51.4995 24.3979 51.4995C26.6235 51.4995 27.7363 52.0104 27.7363 53.0322ZM38.8433 37.3691H51V30.3984H38.8433L14.0469 24.5195L14.0469 31.8262L26.5605 33.8838L14.0469 35.9414L14.0469 43.269L38.8433 37.3691Z"
+					fill="white"
+				/>
+				<path
+					class="header__logo-name"
+					d="M59.875 120V10H90.125C98.0417 10 104 12.2083 108 16.625C112 21 114 27.4167 114 35.875V87.375C114 97.7917 112.167 105.833 108.5 111.5C104.875 117.167 98.5 120 89.375 120H59.875ZM82 100.562H85.8125C89.8542 100.562 91.875 98.6042 91.875 94.6875V37.9375C91.875 34.2708 91.375 31.9167 90.375 30.875C89.4167 29.7917 87.4375 29.25 84.4375 29.25H82V100.562ZM149.25 121C140.458 121 133.729 118.354 129.062 113.062C124.438 107.729 122.125 100.042 122.125 90V37.75C122.125 28.3333 124.417 21.1875 129 16.3125C133.625 11.4375 140.375 9 149.25 9C158.125 9 164.854 11.4375 169.438 16.3125C174.062 21.1875 176.375 28.3333 176.375 37.75V90C176.375 100.042 174.042 107.729 169.375 113.062C164.75 118.354 158.042 121 149.25 121ZM149.438 100.75C152.771 100.75 154.438 97.5208 154.438 91.0625V37.375C154.438 31.9583 152.812 29.25 149.562 29.25C145.896 29.25 144.062 32.0208 144.062 37.5625V91.1875C144.062 94.6042 144.479 97.0625 145.312 98.5625C146.146 100.021 147.521 100.75 149.438 100.75ZM198.562 120V83.8125L181 10H202.812L208.938 47.25L215.062 10H236.812L219.312 83.8125V120H198.562ZM242.375 120V10H264.375V101.25H287V120H242.375ZM293.25 120V10H337.25V31.25H315.625V52.6875H336.375V73.375H315.625V98.5625H338.688V120H293.25Z"
+					fill="white"
+				/>
+			</symbol>
+		</svg>
+	</body>
+</html>
+
+<html>
+		
+

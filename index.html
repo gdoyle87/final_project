@@ -20,6 +20,7 @@
 		<!-- Other Styles  -->
 		<link rel="stylesheet" href="/css/style.css" media="all">
 		<link rel="stylesheet" href="/css/map.css" media="all">
+		<link rel="stylesheet" href="/css/news.css" media="all">
 		<link rel="stylesheet" href="/css/how_to_popup.css" media="all">
 
 		<!-- JQuery -->
@@ -28,6 +29,7 @@
 		<!-- JS -->
 		<script src="scripts/popup.js" defer="defer"></script>
 		<script src="scripts/hangman.js" defer="defer"></script>
+		<script src="scripts/news.js" defer="defer"></script>
 
 		<title>Gary Doyle | Homepage</title>
 	</head>
@@ -86,7 +88,22 @@
 					<div class="container">
 						<!--Note: map is 700+ lines of svg - currently using grok generated script to load via js but will add back inline later.-->
 						<div id="map"></div>
-						<div id="news-ticker"></div>
+			<div id="news-container">
+				<div class="breaking">Breaking</div>
+				<div class="ticker">
+					<ul class="story-list ticker__inner">
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+						<li>Oh no! Canada's in trouble!</li>
+					</ul>
+				</div>
+			</div>
+
+					</div>
 						<div id="word"></div>
 						<div id="keyboard"></div>
 					</div>
