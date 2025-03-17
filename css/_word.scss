@@ -1,0 +1,21 @@
+.letter-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.letter {
+  border-bottom: solid 1px black;
+  min-width: 1rem;
+  width: 2rem;
+  content-visibility: hidden;
+}
+
+.guessed {
+  bottom-border: hidden;
+  content-visibility: auto;
+  text-align: center;
+  transform: translateY(-.5rem);
+}

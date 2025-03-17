@@ -1,0 +1,33 @@
+.bg1 {
+    background-color: var(--bg-color1);
+}
+
+.bg2 {
+    background-color: var(--bg-color2);
+}
+.bg3 {
+    background-color: var(--bg-color3);
+}
+.bg4 {
+    background-color: var(--bg-color4);
+}
+
+.bg5 {
+    background-color: var(--bg-color5);
+}
+
+.right-align {
+    margin-right: auto;
+}
+
+.inverted-contrast-text {
+    color: var(--text-color3);
+}
+
+.inverted-contrast-text .dashboard{
+    color: var(--text-color1);
+}
+
+.bottom-pad {
+    padding-bottom: 100px;
+}

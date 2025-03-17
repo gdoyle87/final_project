@@ -1,0 +1,52 @@
+
+@use "colors";
+/* Header Formatting */
+.header {
+  width: 100%;
+  padding: 0.5rem 3rem;
+  margin-inline: auto;
+  margin-bottom: -10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__logo {
+    margin-right: auto;
+
+    &-name {
+      fill: var(--text-color1); 
+    }
+  }
+}
+
+/* Header Nav Formatting */
+.nav {
+  display: flex;
+
+  &__list {
+    list-style: none;
+    flex: 1;
+  }
+
+  &__item {
+    display: inline-block;
+    padding: 0 20px;
+  }
+
+  &__link {
+    color: var(--text-color1); 
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      color: #aaaaaa; 
+    }
+  }
+}
+
+/* Current Page Link Styles */
+.current-page {
+  color: #0088a9; 
+  pointer-events: none;
+  cursor: default;
+}
+

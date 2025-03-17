@@ -1,0 +1,30 @@
+
+.wave1,
+.wave2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave1 svg {
+    position: relative;
+    display: block;
+    width: calc(148% + 1.3px);
+    height: 59px;
+}
+.wave2 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 69px;
+}
+
+.wave1 .shape-fill {
+    fill: var(--bg-color1);
+}
+.wave2 .shape-fill {
+    fill: var(--bg-color5);
+}
