@@ -1,6 +1,32 @@
+$letterList = $('.letter-list');
+const word = "airplane";
 
-
-
+$btnA = $("#btn_a");
+$btnB = $("#btn_b");
+$btnC = $("#btn_c");
+$btnD = $("#btn_d");
+$btnE = $("#btn_e");
+$btnF = $("#btn_f");
+$btnG = $("#btn_g");
+$btnH = $("#btn_h");
+$btnI = $("#btn_i");
+$btnJ = $("#btn_j");
+$btnK = $("#btn_k");
+$btnL = $("#btn_l");
+$btnM = $("#btn_m");
+$btnN = $("#btn_n");
+$btnO = $("#btn_o");
+$btnP = $("#btn_p");
+$btnQ = $("#btn_q");
+$btnR = $("#btn_r");
+$btnS = $("#btn_s");
+$btnT = $("#btn_t");
+$btnU = $("#btn_u");
+$btnV = $("#btn_v");
+$btnW = $("#btn_w");
+$btnX = $("#btn_x");
+$btnY = $("#btn_y");
+$btnZ = $("#btn_z");
 
 
 
@@ -63,3 +89,21 @@ function startAnnexation() {
 }
 
 startAnnexation();
+
+
+function startGame(word) {
+    console.log(Array.from(word));
+    letters = Array.from(word);
+    let html =``;
+    letters.forEach(letter => {
+        html +=`<li class="letter">${letter}</li>`
+    })
+    $letterList.html(html); 
+}
+
+startGame(word);
+
+$btnA.on("click", () => {
+    console.log("a clicked");
+    $btnA.attr('disabled', 'disabled');
+});
