@@ -1,35 +1,7 @@
 $letterList = $('.letter-list');
 const word = "airplane";
 
-$btnA = $("#btn_a");
-$btnB = $("#btn_b");
-$btnC = $("#btn_c");
-$btnD = $("#btn_d");
-$btnE = $("#btn_e");
-$btnF = $("#btn_f");
-$btnG = $("#btn_g");
-$btnH = $("#btn_h");
-$btnI = $("#btn_i");
-$btnJ = $("#btn_j");
-$btnK = $("#btn_k");
-$btnL = $("#btn_l");
-$btnM = $("#btn_m");
-$btnN = $("#btn_n");
-$btnO = $("#btn_o");
-$btnP = $("#btn_p");
-$btnQ = $("#btn_q");
-$btnR = $("#btn_r");
-$btnS = $("#btn_s");
-$btnT = $("#btn_t");
-$btnU = $("#btn_u");
-$btnV = $("#btn_v");
-$btnW = $("#btn_w");
-$btnX = $("#btn_x");
-$btnY = $("#btn_y");
-$btnZ = $("#btn_z");
-
-
-
+$btn = $(".btn");
 
 
 function loadMap() {
@@ -103,7 +75,12 @@ function startGame(word) {
 
 startGame(word);
 
-$btnA.on("click", () => {
-    console.log("a clicked");
-    $btnA.attr('disabled', 'disabled');
+$btn.on("click", function() {
+    let button = this.id;
+    console.log(button);
+    $(`#${button}`).attr('disabled', 'disabled');
+
+    // TODO: Add a comparison against array using .replace btn_ to get just the letter clicked.
+    
+    // TODO: Update the map and the news cycle or reveal the letter
 });
