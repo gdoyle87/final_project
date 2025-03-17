@@ -18,3 +18,10 @@ function addAnimation() {
         });
     });
 }
+
+
+function parseJSONStories() {
+
+}
+
+    
