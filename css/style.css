@@ -375,13 +375,24 @@ section {
   min-width: 1rem;
   width: 2rem;
   content-visibility: hidden;
+  margin-top: 1rem;
 }
 
 .guessed {
-  bottom-border: none;
+  border-bottom: hidden;
   content-visibility: auto;
   text-align: center;
-  transform: translateY(-0.3rem);
+  text-transform: uppercase;
+  transform: translateY(-0.5rem);
+  margin-top: 0;
+}
+
+#hint {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

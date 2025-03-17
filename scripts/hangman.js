@@ -1,5 +1,6 @@
 $letterList = $('.letter-list');
-const word = "airplane";
+let word;
+let hint;
 
 $btn = $(".btn");
 
@@ -35,7 +36,7 @@ function loadMap() {
         .catch(error => console.error("Error loading SVG:", error));
 }
 
-// loadMap();
+loadMap();
 function generateAnnexationOrder() {
     let provinces = ["AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL", "YT", "NT", "NU"];
     return provinces.sort(() => Math.random() - 0.5); 
@@ -60,12 +61,29 @@ function startAnnexation() {
     }, 1000); 
 }
 
-startAnnexation();
+//startAnnexation();
 
+
+function getWords() {
+    fetch("/data/word_list.json")
+    .then(response => response.json())
+    .then(data => {
+            let words = data.words;
+            let chosen_word = words[Math.floor(Math.random() * words.length)];
+            console.log(chosen_word);
+            word = chosen_word.word.toLowerCase();
+            hint = chosen_word.hint;
+
+            $("#hint").html(`<p><small>Hint: ${hint}</small></p>`);
+            startGame(word);
+        })
+    .catch(error => console.error("Error loading data", error))
+}
+getWords();
 
 function startGame(word) {
-    console.log(Array.from(word));
     letters = Array.from(word);
+    console.log(letters);
     let html =``;
     letters.forEach(letter => {
         html +=`<li class="letter">${letter}</li>`
@@ -73,7 +91,6 @@ function startGame(word) {
     $letterList.html(html); 
 }
 
-startGame(word);
 
 $btn.on("click", function() {
     let button = this.id;
@@ -81,6 +98,17 @@ $btn.on("click", function() {
     $(`#${button}`).attr('disabled', 'disabled');
 
     // TODO: Add a comparison against array using .replace btn_ to get just the letter clicked.
-    
+    let letter = button.replace("btn_", "").toLowerCase();
+    let place = word.indexOf(letter);
+    console.log(place);
+    if (place >= 0) {
+            $(".letter").filter(function() {
+                match = $(this).text() === letter;
+                console.log(match);
+                return match;
+            }).addClass("guessed");
+        }
+     
     // TODO: Update the map and the news cycle or reveal the letter
+
 });

@@ -1,8 +1,12 @@
-.letter-list {
+@mixin flex-center($direction: row) {
   display: flex;
-  flex-direction: row;
+  flex-direction: $direction;
   align-items: center;
   justify-content: center;
+}
+
+.letter-list {
+  @include flex-center;
   gap: 10px;
 }
 
@@ -11,11 +15,19 @@
   min-width: 1rem;
   width: 2rem;
   content-visibility: hidden;
+  margin-top: 1rem;
 }
 
 .guessed {
-  bottom-border: hidden;
+  border-bottom: hidden;
   content-visibility: auto;
   text-align: center;
+  text-transform: uppercase;
   transform: translateY(-.5rem);
+  margin-top: 0;
+}
+
+#hint {
+  @include flex-center;
+  text-align: center;
 }
