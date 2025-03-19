@@ -1,6 +1,7 @@
 $letterList = $('.letter-list');
 let word;
 let hint;
+let guess = "";
 
 $btn = $(".btn");
 
@@ -19,7 +20,6 @@ function loadMap() {
             const svgDoc = parser.parseFromString(svgData, "image/svg+xml");
             const svgElement = svgDoc.documentElement;
 
-            // Clear existing content
             mapContainer.innerHTML = "";
             
             // Set styling to ensure visibility (you can move this to CSS)
@@ -60,7 +60,18 @@ function startAnnexation() {
         }
     }, 1000); 
 }
+function annex() {
+        if (!annexationQueue) {
+        return;
+    }
+        let nextProvince = annexationQueue.pop(); 
+        let provinceElement = document.querySelector(`#${nextProvince}`);
 
+        if (provinceElement) {
+            provinceElement.classList.add("taken"); 
+            console.log(`Annexed: ${nextProvince}`);
+        }
+}
 //startAnnexation();
 
 
@@ -86,29 +97,65 @@ function startGame(word) {
     console.log(letters);
     let html =``;
     letters.forEach(letter => {
-        html +=`<li class="letter">${letter}</li>`
+        if (letter===" ") {
+            html +=`<li class="letter guessed">${letter}</li>`
+        } else {
+            html +=`<li class="letter">${letter}</li>`
+        }
     })
     $letterList.html(html); 
 }
-
+function checkGuess() {
+    let sortedGuess = Array.from(guess.replace(" ", "")).sort().join("");
+    let sortedWord = Array.from(word.replace(" ", "")).sort().join("");
+    if (sortedGuess === sortedWord) {
+        console.log("You win!");
+        $btn.attr('disabled', 'disabled');
+    }
+}
+function loseGame() {
+    console.log("You lose! Good day, sir!")
+    $btn.attr("disabled", "disabled");
+}
 
 $btn.on("click", function() {
     let button = this.id;
     console.log(button);
     $(`#${button}`).attr('disabled', 'disabled');
 
-    // TODO: Add a comparison against array using .replace btn_ to get just the letter clicked.
     let letter = button.replace("btn_", "").toLowerCase();
     let place = word.indexOf(letter);
     console.log(place);
     if (place >= 0) {
-            $(".letter").filter(function() {
-                match = $(this).text() === letter;
-                console.log(match);
-                return match;
-            }).addClass("guessed");
+        $(".letter").filter(function() {
+            match = $(this).text() === letter;
+            console.log(match);
+            if (match) {
+                guess+=letter;
+            }
+            return match;
+        }).addClass("guessed");
+    
+        checkGuess();
+    } else {
+        if (annexationQueue.length === 1) {
+            annex();
+
+            let provinceElement = document.querySelector(`#BC`);
+
+            provinceElement.classList.add("taken"); 
+            loseGame();
+
         }
-     
-    // TODO: Update the map and the news cycle or reveal the letter
+        else { if (annexationQueue.length === 12) {
+            annex();
+        } 
+
+            annex();
+            annex();
+        }
+
+    }
+
 
 });
