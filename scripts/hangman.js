@@ -2,9 +2,9 @@ $letterList = $('.letter-list');
 let word;
 let hint;
 let guess = "";
-
+$start = $("#start");
 $btn = $(".btn");
-
+$outcome = $("#outcome");
 
 function loadMap() {
     fetch("/images/map.svg")  // Added leading slash for consistent path
@@ -24,6 +24,7 @@ function loadMap() {
             
             // Set styling to ensure visibility (you can move this to CSS)
             svgElement.style.width = "100%";
+            svgElement.style.width = "70%";
             svgElement.style.height = "auto";
             
             // Append SVG
@@ -44,22 +45,6 @@ function generateAnnexationOrder() {
 
 let annexationQueue = generateAnnexationOrder();
 
-function startAnnexation() {
-    let interval = setInterval(() => {
-        if (annexationQueue.length === 0) {
-            clearInterval(interval);
-            return;
-        }
-
-        let nextProvince = annexationQueue.pop(); 
-        let provinceElement = document.querySelector(`#${nextProvince}`);
-
-        if (provinceElement) {
-            provinceElement.classList.add("taken"); 
-            console.log(`Annexed: ${nextProvince}`);
-        }
-    }, 1000); 
-}
 function annex() {
         if (!annexationQueue) {
         return;
@@ -72,7 +57,6 @@ function annex() {
             console.log(`Annexed: ${nextProvince}`);
         }
 }
-//startAnnexation();
 
 
 function getWords() {
@@ -116,7 +100,50 @@ function checkGuess() {
 function loseGame() {
     console.log("You lose! Good day, sir!")
     $btn.attr("disabled", "disabled");
+
+
+fetch("/images/us_flag.svg")
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+    })
+    .then(svgData => {
+        const outcomeContainer = document.getElementById("outcome");
+        
+        // Parse SVG
+        const parser = new DOMParser();
+        const svgDoc = parser.parseFromString(svgData, "image/svg+xml");
+        const svgElement = svgDoc.documentElement;
+
+        // Remove hardcoded width and height
+        svgElement.removeAttribute("width");
+        svgElement.removeAttribute("height");
+
+        // Add a dynamic viewBox (based on original dimensions)
+        svgElement.setAttribute("viewBox", "0 0 1235 650");
+
+        // Ensure it scales properly
+        svgElement.style.width = "100%";
+        svgElement.style.height = "auto";
+        svgElement.style.display = "block";  // Prevents inline whitespace issues
+
+        // Append SVG
+        outcomeContainer.innerHTML = "";
+        outcomeContainer.appendChild(svgElement);
+    })
+    .catch(error => console.error("Error loading SVG:", error));
 }
+
+$start.on('click', function() {
+    getWords();
+    loadMap();
+    annexationQueue = generateAnnexationOrder();
+    $btn.each(function() {
+        $(this).removeAttr('disabled');
+    });
+    $outcome.html("");
+
+})
 
 $btn.on("click", function() {
     let button = this.id;

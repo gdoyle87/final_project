@@ -89,7 +89,10 @@
 
 			<section class="content-grid full-width bg4 bottom-pad">
 				<!--Note: map is 700+ lines of svg - currently using grok generated script to load via js but will add back inline later.-->
+				<div id="hangman">
 				<div id="map"></div>
+				<div id="outcome"></div>
+				</div>
 				<div id="news-container">
 					<div class="breaking">Breaking</div>
 					<div class="ticker">
@@ -110,6 +113,9 @@
 				</div>
 				<div id="hint">
 				</div>
+				<div id="start-game">
+					<button id="start">Start Game
+					</button></div>
 				<div id="keyboard">
 					<button id="btn_a" class="btn">A</button>
 					<button id="btn_b" class="btn">B</button>
