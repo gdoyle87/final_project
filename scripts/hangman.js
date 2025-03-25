@@ -7,7 +7,10 @@ let guesses = 0;
 $start = $("#start");
 $btn = $(".btn");
 $outcome = $("#outcome");
-
+$guesses = $("#guesses");
+$winMsg = $("#win_msg");
+$loseMsg = $("#lose_msg");
+$flag = $("#flag");
 
 
 const can_flag = "/images/can_flag.svg"
@@ -103,12 +106,16 @@ function checkGuess() {
     if (sortedGuess === sortedWord) {
         console.log("You win!");
         $btn.attr('disabled', 'disabled');
+        $winMsg.removeAttr('hidden');
+        load_flag(can_flag);
     }
+    else{ console.log("Guess: ", sortedGuess, " Word: ", sortedWord)}
 }
 function loseGame() {
     console.log("You lose! Good day, sir!")
     $btn.attr("disabled", "disabled");
-    load_flag(can_flag);
+    load_flag(us_flag);
+    $loseMsg.removeAttr('hidden');
 
 }
 
@@ -120,7 +127,7 @@ function load_flag(flag) {
         return response.text();
     })
     .then(svgData => {
-        const outcomeContainer = document.getElementById("outcome");
+        const outcomeContainer = document.getElementById("flag");
         
         // Parse SVG
         const parser = new DOMParser();
@@ -155,8 +162,12 @@ $start.on('click', function() {
     $btn.each(function() {
         $(this).removeAttr('disabled');
     });
-    $outcome.html("");
+    $flag.html("");
     guesses = 0;
+    $guesses.text(guesses);
+    $winMsg.attr('hidden', true);
+    $loseMsg.attr('hidden', true);
+    getNews();
 
 })
 
@@ -204,6 +215,7 @@ $btn.on("click", function() {
             annex();
         }
         guesses++;
+        $guesses.text(guesses);
         getNews();
 
     }
