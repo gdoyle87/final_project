@@ -187,6 +187,15 @@ h3 {
   grid-column: full-width;
 }
 
+#hangman {
+  display: flex;
+  flex-direction: row;
+}
+
+#map {
+  flex-basis: 80%;
+}
+
 .wave1,
 .wave2 {
   position: absolute;
@@ -221,32 +230,36 @@ h3 {
 
 #news-container {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
-/* Trapezoid Shape */
-.breaking {
-  background-color: #e60505;
-  text-align: center;
-  width: 6rem;
-  height: 3rem;
-  line-height: 3rem;
-  position: relative;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: white;
+.ticker {
+  width: 100%;
+  min-width: 0;
+  flex-grow: 1;
+  height: 2rem;
+  font-size: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
-.breaking:before {
-  content: "";
-  width: 0px;
-  height: 0px;
-  border-top: 3rem solid #e60505;
-  border-right: 1.5rem solid transparent;
-  position: absolute;
-  left: 100%;
-  bottom: 0px;
-  z-index: 100;
+.ticker__inner {
+  display: flex;
+  gap: 1em;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  white-space: nowrap;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.breaking-svg {
+  width: clamp(4rem, 10vw, 6rem);
+  height: auto;
 }
 
 .story-list {
@@ -260,22 +273,10 @@ h3 {
   padding-inline: 1rem;
 }
 
-.ticker {
-  max-width: 600px;
-  height: 3rem;
-  padding-top: 1rem;
-}
-
-.ticker__inner {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
 /* animation stuff (disabled by js if user has prefers-reduced-motion) */
 .ticker[data-animated=true] {
   overflow: hidden;
-  /* fade the text out as it comes close to the shape */
+  /* fade the text out as it comes close to the shape - note colour used doesnt matter as its a mask*/
   -webkit-mask: linear-gradient(90deg, transparent, white 5%);
   mask: linear-gradient(90deg, transparent, white 5%);
 }
@@ -308,6 +309,53 @@ h3 {
     transform: translateX(calc(-50% - 0.5rem));
   }
 }
+/* Responsive Adjustments 
+@media (max-width: 768px) {
+	.breaking {
+		width: 5em;
+		height: 2.5em;
+		line-height: 2.5em;
+		font-size: 1em;
+	}
+
+	.breaking:before {
+		border-top: 2.5em solid #e60505;
+		border-right: 1.2em solid transparent;
+	}
+
+	.ticker {
+		height: 2.5em;
+		padding-top: 0.75em;
+	}
+
+	.ticker__inner {
+		font-size: 1em;
+	}
+}
+
+@media (max-width: 480px) {
+    #news-container .breaking { 
+        width: 4rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 0.9rem;
+    }
+
+	.breaking:before {
+		border-top: 2em solid #e60505;
+		border-right: 1em solid transparent;
+	}
+
+	.ticker {
+		height: 2em;
+		padding-top: 0.5em;
+	}
+
+	.ticker__inner {
+		font-size: 0.9em;
+	}
+}
+*/
 /* Footer styles */
 footer {
   background-color: #4D4D4D;
@@ -393,6 +441,10 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.taken {
+  fill: blue;
 }
 
 /*# sourceMappingURL=style.css.map */

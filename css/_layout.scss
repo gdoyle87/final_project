@@ -29,6 +29,11 @@ $breakout-size: calc(($breakout-max-width - $content-max-width) / 2);
 }
 
 
+#hangman {
+  display: flex;
+  flex-direction: row;
+}
 
-
-
+#map {
+  flex-basis: 80%;
+}

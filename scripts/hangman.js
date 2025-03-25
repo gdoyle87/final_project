@@ -6,6 +6,9 @@ $start = $("#start");
 $btn = $(".btn");
 $outcome = $("#outcome");
 
+const can_flag = "/images/can_flag.svg"
+const us_flag = "/images/us_flag.svg"
+
 function loadMap() {
     fetch("/images/map.svg")  // Added leading slash for consistent path
         .then(response => {
@@ -38,8 +41,13 @@ function loadMap() {
 }
 
 loadMap();
+
 function generateAnnexationOrder() {
-    let provinces = ["AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL", "YT", "NT", "NU"];
+    // BC not included in the annexation order so that it can always be one of the final holdouts
+    let provinces = ["AB", "SK", "MB", "ON",
+                     "QC", "NB", "NS", "PE",
+                     "NL", "YT", "NT", "NU"];
+
     return provinces.sort(() => Math.random() - 0.5); 
 }
 
@@ -100,9 +108,13 @@ function checkGuess() {
 function loseGame() {
     console.log("You lose! Good day, sir!")
     $btn.attr("disabled", "disabled");
+    load_flag(can_flag);
 
+}
 
-fetch("/images/us_flag.svg")
+function load_flag(flag) {
+
+    fetch(flag)
     .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.text();
@@ -120,7 +132,9 @@ fetch("/images/us_flag.svg")
         svgElement.removeAttribute("height");
 
         // Add a dynamic viewBox (based on original dimensions)
-        svgElement.setAttribute("viewBox", "0 0 1235 650");
+        if (flag === us_flag) {
+                svgElement.setAttribute("viewBox", "0 0 1235 650");
+            }
 
         // Ensure it scales properly
         svgElement.style.width = "100%";
@@ -132,8 +146,8 @@ fetch("/images/us_flag.svg")
         outcomeContainer.appendChild(svgElement);
     })
     .catch(error => console.error("Error loading SVG:", error));
-}
 
+}
 $start.on('click', function() {
     getWords();
     loadMap();
