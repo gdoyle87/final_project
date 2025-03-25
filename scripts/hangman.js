@@ -2,15 +2,19 @@ $letterList = $('.letter-list');
 let word;
 let hint;
 let guess = "";
+let guesses = 0;
+
 $start = $("#start");
 $btn = $(".btn");
 $outcome = $("#outcome");
+
+
 
 const can_flag = "/images/can_flag.svg"
 const us_flag = "/images/us_flag.svg"
 
 function loadMap() {
-    fetch("/images/map.svg")  // Added leading slash for consistent path
+    fetch("/images/map.svg")  
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.text();
@@ -18,22 +22,18 @@ function loadMap() {
         .then(svgData => {
             const mapContainer = document.getElementById("map");
             
-            // Parse SVG
             const parser = new DOMParser();
             const svgDoc = parser.parseFromString(svgData, "image/svg+xml");
             const svgElement = svgDoc.documentElement;
 
             mapContainer.innerHTML = "";
             
-            // Set styling to ensure visibility (you can move this to CSS)
             svgElement.style.width = "100%";
             svgElement.style.width = "70%";
             svgElement.style.height = "auto";
             
-            // Append SVG
             mapContainer.appendChild(svgElement);
 
-            // Verify it loaded and you can access province IDs
             const provinces = svgElement.querySelectorAll('[id]');
             console.log('Found province IDs:', provinces.length);
         })
@@ -113,7 +113,7 @@ function loseGame() {
 }
 
 function load_flag(flag) {
-
+    // Note: I didn't want svg in the html so this function was used instead.
     fetch(flag)
     .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
@@ -156,6 +156,7 @@ $start.on('click', function() {
         $(this).removeAttr('disabled');
     });
     $outcome.html("");
+    guesses = 0;
 
 })
 
@@ -167,7 +168,10 @@ $btn.on("click", function() {
     let letter = button.replace("btn_", "").toLowerCase();
     let place = word.indexOf(letter);
     console.log(place);
+   
+    // Process the guess
     if (place >= 0) {
+        // Correct Guess
         $(".letter").filter(function() {
             match = $(this).text() === letter;
             console.log(match);
@@ -179,7 +183,9 @@ $btn.on("click", function() {
     
         checkGuess();
     } else {
+        // Wrong Guess
         if (annexationQueue.length === 1) {
+            // we are on the last province so take BC too
             annex();
 
             let provinceElement = document.querySelector(`#BC`);
@@ -188,13 +194,17 @@ $btn.on("click", function() {
             loseGame();
 
         }
-        else { if (annexationQueue.length === 12) {
-            annex();
-        } 
+        else { 
+            if (annexationQueue.length === 12) {
+                // for the first wrong guess, take an additional province
+                annex();
+            } 
 
             annex();
             annex();
         }
+        guesses++;
+        getNews();
 
     }
 
