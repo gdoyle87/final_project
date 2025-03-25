@@ -45,50 +45,53 @@
 		</header>
 
 		<main>
-			<article id="pop-up" hidden="hidden">
-				<div>
-					<button id="close-pop-up">&#x2715;</button>
-					<h2>Save Canada Before It’s Too Late!</h2>
-
-					<p>Welcome to <strong>Annexation Hangman</strong>, the satirical word-guessing game where the fate of Canada hangs in the balance!</p>
-					<hr>
-					<h3>The Premise</h3>
-					<p>In a world where President <strong>Coddled Chump</strong> and his crony billionaire <strong>Felon Husk</strong> are plotting to absorb Canada into the United States, you are the last hope to stop the annexation.</p>
-
-
-					<p>Each incorrect guess brings Canada one step closer to becoming the 51st state. Provinces will flip one by one, with <strong>British Columbia always falling last</strong>. If you fail to guess the word in time, Canada is lost.</p>
-					<hr>
-					<h3>How to Play</h3>
-					<ul>
-						<li>Guess letters to uncover the hidden word.</li>
-						<li>Each <strong>wrong guess</strong> brings Canada <strong>one step closer to annexation</strong>.</li>
-						<li>Provinces will <strong>turn red</strong> as they fall under US control.</li>
-						<li><strong>Guess the full word before all provinces are gone to save Canada!</strong></li>
-					</ul>
-					<hr>
-					<h3>Will You Be Canada’s Hero?</h3>
-					<p>The choice is yours: <strong>Save Canada or watch it disappear under the stars and stripes.</strong></p>
-
-					<p>Good luck, and remember—<strong>this is not a drill!</strong></p>
-					<hr>
-					<p><small>
-						<strong>Disclaimer:</strong> This is a work of satire. The characters, events, and scenarios in this game 
-						are entirely fictional and are not intended to represent any real people, past or present. 
-						This game is for entertainment purposes only.
-					</small>
-					</p>
-					<button id="lets_play">Let's play!</button>
-				</div>
-			</article>
 
 			<section class="bg2 bottom-pad">
+				<article id="pop-up" >
+					<div>
+						<h2>Save Canada Before It’s Too Late!</h2>
+
+						<p>Welcome to <strong>Annexation Hangman</strong>, the satirical word-guessing game where the fate of Canada hangs in the balance!</p>
+						<hr>
+						<h3>The Premise</h3>
+						<p>In a world where President <strong>Coddled Chump</strong> and his crony billionaire <strong>Felon Husk</strong> are plotting to absorb Canada into the United States, you are the last hope to stop the annexation.</p>
+
+
+						<p>Each incorrect guess brings Canada one step closer to becoming the 51st state. Provinces will flip one by one, with <strong>British Columbia always falling last</strong>. If you fail to guess the word in time, Canada is lost.</p>
+						<hr>
+						<h3>How to Play</h3>
+						<ul>
+							<li>Guess letters to uncover the hidden word.</li>
+							<li>Each <strong>wrong guess</strong> brings Canada <strong>one step closer to annexation</strong>.</li>
+							<li>Provinces will <strong>turn red</strong> as they fall under US control.</li>
+							<li><strong>Guess the full word before all provinces are gone to save Canada!</strong></li>
+						</ul>
+						<hr>
+						<h3>Will You Be Canada’s Hero?</h3>
+						<p>The choice is yours: <strong>Save Canada or watch it disappear under the stars and stripes.</strong></p>
+
+						<p>Good luck, and remember—<strong>this is not a drill!</strong></p>
+						<hr>
+						<p><small>
+							<strong>Disclaimer:</strong> This is a work of satire. The characters, events, and scenarios in this game 
+							are entirely fictional and are not intended to represent any real people, past or present. 
+							This game is for entertainment purposes only.
+						</small>
+						</p>
+					</div>
+				</article>
 			</section>
 
 			<section class="content-grid full-width bg4 bottom-pad">
 				<!--Note: map is 700+ lines of svg - currently using grok generated script to load via js but will add back inline later.-->
 				<div id="hangman">
-				<div id="map"></div>
-				<div id="outcome"></div>
+					<div id="map"></div>
+					<div id="outcome">
+						<p>Incorrect Guesses: <span id="guesses">0</span>/6</p>
+						<p id="win_msg" hidden><strong>You Win!</strong> You saved Canada!</p>
+						<p id="lose_msg" hidden><strong>You Lost!</strong> How could you do this to Canada!?</p>
+						<div id="flag"></div>
+					</div>
 				</div>
 				<div id="news-container">
 					<div class="breaking"> 
