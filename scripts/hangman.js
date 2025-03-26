@@ -103,6 +103,7 @@ function getWords() {
 getWords();
 
 function startGame(word) {
+    guess = '';
     letters = Array.from(word);
     console.log(letters);
     let html =``;
