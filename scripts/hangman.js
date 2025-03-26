@@ -17,7 +17,7 @@ const can_flag = "/images/can_flag.svg"
 const us_flag = "/images/us_flag.svg"
 
 function loadMap() {
-    fetch("/images/map.svg")  
+    fetch("/final_project/images/map.svg")  
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.text();
@@ -86,7 +86,7 @@ function annex() {
 
 
 function getWords() {
-    fetch("/data/word_list.json")
+    fetch("/final_project/data/word_list.json")
     .then(response => response.json())
     .then(data => {
             let words = data.words;
