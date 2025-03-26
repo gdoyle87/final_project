@@ -262,6 +262,7 @@ h3 {
   flex-direction: row;
   align-items: center;
   text-align: center;
+  margin-top: 1rem;
 }
 
 .breaking-svg {
@@ -410,8 +411,55 @@ section {
   text-align: center;
 }
 
+#start-game {
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem;
+}
+
+#start {
+  padding-block: 0.5rem;
+}
+
 .taken {
   fill: blue;
+}
+
+.accordion-header {
+  color: var(--text-color3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1em;
+  padding-block: 0.5em;
+  position: relative;
+  border: 1px solid var(--bg-color4);
+  cursor: pointer;
+}
+
+#show, #hide {
+  font-size: 0.8em;
+}
+
+.toggle-wrapper {
+  position: relative;
+  width: 4em;
+  height: 1em;
+}
+
+.toggle-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: right;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /*# sourceMappingURL=style.css.map */

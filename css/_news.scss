@@ -33,6 +33,8 @@
 
 	align-items: center;
 	text-align: center;
+
+	margin-top: 1rem;
 }
 .breaking-svg {
     width: clamp(4rem, 10vw, 6rem);
@@ -50,7 +52,6 @@
 	padding-inline: 1rem;
 
 }	
-
 
 /* animation stuff (disabled by js if user has prefers-reduced-motion) */
 .ticker[data-animated="true"] {
