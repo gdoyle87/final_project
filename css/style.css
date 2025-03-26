@@ -425,6 +425,10 @@ section {
   fill: blue;
 }
 
+.untaken {
+  fill: var(--bg-color5);
+}
+
 .accordion-header {
   color: var(--text-color3);
   display: flex;

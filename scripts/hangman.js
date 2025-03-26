@@ -36,13 +36,27 @@ function loadMap() {
             //svgElement.style.width = "100%";
             svgElement.style.width = "70%";
             svgElement.style.height = "auto";
-            
+
             mapContainer.appendChild(svgElement);
 
             const provinces = svgElement.querySelectorAll('[id]');
             console.log('Found province IDs:', provinces.length);
+            resetProvinceColours();
         })
         .catch(error => console.error("Error loading SVG:", error));
+}
+
+
+function resetProvinceColours() {
+    const provinces = ["BC", "AB", "SK", "MB", "ON",
+                       "QC", "NB", "NS", "PE",
+                       "NL", "YT", "NT", "NU"] 
+    provinces.forEach(province => {
+        provinceElement = document.querySelector(`#${province}`);
+        provinceElement.classList.add("untaken");
+        provinceElement.classList.remove("taken");
+
+    })
 }
 
 loadMap();
@@ -67,6 +81,7 @@ function annex() {
 
         if (provinceElement) {
             provinceElement.classList.add("taken"); 
+            provinceElement.classList.remove("untaken");
             console.log(`Annexed: ${nextProvince}`);
         }
 }
