@@ -125,7 +125,7 @@ function checkGuess() {
         console.log("You win!");
         $btn.attr('disabled', 'disabled');
         $winMsg.removeAttr('hidden');
-        playAgainBtn.removeAttr('hidden');
+        $playAgainBtn.removeAttr('hidden');
         load_flag(can_flag);
     }
     else{ console.log("Guess: ", sortedGuess, " Word: ", sortedWord)}
