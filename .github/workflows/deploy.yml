@@ -20,8 +20,10 @@ jobs:
           -e 's|src="/|src="/final_project/|g' \
           -e 's|href="/|href="/final_project/|g' \
           -e 's|fetch("/|fetch("/final_project/|g' \
+          -e "s|fetch('/|fetch('/final_project/|g" \
+          -e 's|"\/data/|"\/final_project/data/|g' \
+          -e "s|'\/data/|'\/final_project/data/|g" \
           -e 's|url(/|url(/final_project/|g' {} +
-
     - name: 🚀 Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
