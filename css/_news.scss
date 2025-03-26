@@ -37,8 +37,25 @@
 	margin-top: 1rem;
 }
 .breaking-svg {
-    width: clamp(4rem, 10vw, 6rem);
-    height: auto;
+	width: clamp(4rem, 10vw, 6rem);
+	min-width: 100px;
+	height: auto;
+}
+
+#headline-wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex: 1;
+}
+
+#headline {
+	display: inline-block;
+	font-size: 80%;
+	font-weight: bold;
+	max-width: 100%;
+	white-space: nowrap;
 }
 
 .story-list {
@@ -102,5 +119,9 @@ to {
 		flex-direction: column;
 		align-items: flex-start;
 		text-align: left;
+	}
+
+	#headline {
+		white-space: normal;
 	}
 }

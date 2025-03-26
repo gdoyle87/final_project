@@ -11,9 +11,7 @@ $guesses = $("#guesses");
 $winMsg = $("#win_msg");
 $loseMsg = $("#lose_msg");
 $flag = $("#flag");
-$tab = $(".tab");
-$tabContent = $(".content");
-
+$playAgainBtn = $('#play-again');
 
 const can_flag = "/images/can_flag.svg"
 const us_flag = "/images/us_flag.svg"
@@ -36,13 +34,27 @@ function loadMap() {
             //svgElement.style.width = "100%";
             svgElement.style.width = "70%";
             svgElement.style.height = "auto";
-            
+
             mapContainer.appendChild(svgElement);
 
             const provinces = svgElement.querySelectorAll('[id]');
             console.log('Found province IDs:', provinces.length);
+            resetProvinceColours();
         })
         .catch(error => console.error("Error loading SVG:", error));
+}
+
+
+function resetProvinceColours() {
+    const provinces = ["BC", "AB", "SK", "MB", "ON",
+                       "QC", "NB", "NS", "PE",
+                       "NL", "YT", "NT", "NU"] 
+    provinces.forEach(province => {
+        provinceElement = document.querySelector(`#${province}`);
+        provinceElement.classList.add("untaken");
+        provinceElement.classList.remove("taken");
+
+    })
 }
 
 loadMap();
@@ -67,6 +79,7 @@ function annex() {
 
         if (provinceElement) {
             provinceElement.classList.add("taken"); 
+            provinceElement.classList.remove("untaken");
             console.log(`Annexed: ${nextProvince}`);
         }
 }
@@ -90,6 +103,7 @@ function getWords() {
 getWords();
 
 function startGame(word) {
+    guess = '';
     letters = Array.from(word);
     console.log(letters);
     let html =``;
@@ -99,7 +113,9 @@ function startGame(word) {
         } else {
             html +=`<li class="letter">${letter}</li>`
         }
+    $playAgainBtn.attr('hidden', 'true');
     })
+
     $letterList.html(html); 
 }
 function checkGuess() {
@@ -109,6 +125,7 @@ function checkGuess() {
         console.log("You win!");
         $btn.attr('disabled', 'disabled');
         $winMsg.removeAttr('hidden');
+        playAgainBtn.removeAttr('hidden');
         load_flag(can_flag);
     }
     else{ console.log("Guess: ", sortedGuess, " Word: ", sortedWord)}
@@ -118,6 +135,7 @@ function loseGame() {
     $btn.attr("disabled", "disabled");
     load_flag(us_flag);
     $loseMsg.removeAttr('hidden');
+    $playAgainBtn.removeAttr('hidden');
 
 }
 
@@ -147,7 +165,7 @@ function load_flag(flag) {
 
         // Ensure it scales properly
         svgElement.style.width = "100%";
-        svgElement.style.height = "auto";
+        svgElement.style.height = "100px";
         svgElement.style.display = "block";  // Prevents inline whitespace issues
 
         // Append SVG
@@ -158,6 +176,22 @@ function load_flag(flag) {
 
 }
 $start.on('click', function() {
+    getWords();
+    loadMap();
+    annexationQueue = generateAnnexationOrder();
+    $btn.each(function() {
+        $(this).removeAttr('disabled');
+    });
+    $flag.html("");
+    guesses = 0;
+    $guesses.text(guesses);
+    $winMsg.attr('hidden', true);
+    $loseMsg.attr('hidden', true);
+    getNews();
+
+})
+
+$playAgainBtn.on('click', function() {
     getWords();
     loadMap();
     annexationQueue = generateAnnexationOrder();
@@ -204,6 +238,8 @@ $btn.on("click", function() {
             let provinceElement = document.querySelector(`#BC`);
 
             provinceElement.classList.add("taken"); 
+            provinceElement.classList.remove("untaken"); 
+
             loseGame();
 
         }
