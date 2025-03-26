@@ -13,8 +13,8 @@ $loseMsg = $("#lose_msg");
 $flag = $("#flag");
 $playAgainBtn = $('#play-again');
 
-const can_flag = "/images/can_flag.svg"
-const us_flag = "/images/us_flag.svg"
+const can_flag = "/final_project/images/can_flag.svg"
+const us_flag = "/final_project/images/us_flag.svg"
 
 function loadMap() {
     fetch("/final_project/images/map.svg")  
