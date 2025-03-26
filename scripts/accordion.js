@@ -3,8 +3,21 @@ const $details = $('.details');
 const $show = $('#show');
 const $hide = $('#hide');
 
-// Hide the details elements on page load
-$details.hide();
+
+const isOpen = localStorage.getItem('accordionOpen') === "true";
+console.log(isOpen, localStorage.getItem('accordionOpen'));
+
+if (isOpen) {
+$details.show();
+  $show.addClass('hidden');
+  $hide.removeClass('hidden');
+} else {
+  $details.hide();
+  $hide.addClass('hidden');
+  $show.removeClass('hidden');
+
+}
+
 
 // Accordion
 $tabs.click(function(){
@@ -16,6 +29,7 @@ $tabs.click(function(){
         $(this).next().slideUp();  
         $hide.addClass('hidden');
         $show.removeClass('hidden');
+        localStorage.setItem('accordionOpen', 'false');
     }else{
         //otherwise, close all details
         $details.slideUp();
@@ -23,6 +37,9 @@ $tabs.click(function(){
         $(this).next().slideDown();
         $show.addClass('hidden');
         $hide.removeClass('hidden');
+        localStorage.setItem('accordionOpen', 'true');
     }                   
 });
+
+
 
