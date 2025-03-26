@@ -11,8 +11,6 @@ $guesses = $("#guesses");
 $winMsg = $("#win_msg");
 $loseMsg = $("#lose_msg");
 $flag = $("#flag");
-$tab = $(".tab");
-$tabContent = $(".content");
 
 
 const can_flag = "/images/can_flag.svg"
@@ -162,7 +160,7 @@ function load_flag(flag) {
 
         // Ensure it scales properly
         svgElement.style.width = "100%";
-        svgElement.style.height = "auto";
+        svgElement.style.height = "100px";
         svgElement.style.display = "block";  // Prevents inline whitespace issues
 
         // Append SVG
@@ -219,6 +217,8 @@ $btn.on("click", function() {
             let provinceElement = document.querySelector(`#BC`);
 
             provinceElement.classList.add("taken"); 
+            provinceElement.classList.remove("untaken"); 
+
             loseGame();
 
         }
