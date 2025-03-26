@@ -31,3 +31,13 @@
   @include flex-center;
   text-align: center;
 }
+
+#start-game {
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem;
+}
+
+#start {
+  padding-block: 0.5rem;
+}

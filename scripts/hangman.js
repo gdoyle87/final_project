@@ -11,6 +11,8 @@ $guesses = $("#guesses");
 $winMsg = $("#win_msg");
 $loseMsg = $("#lose_msg");
 $flag = $("#flag");
+$tab = $(".tab");
+$tabContent = $(".content");
 
 
 const can_flag = "/images/can_flag.svg"
@@ -31,7 +33,7 @@ function loadMap() {
 
             mapContainer.innerHTML = "";
             
-            svgElement.style.width = "100%";
+            //svgElement.style.width = "100%";
             svgElement.style.width = "70%";
             svgElement.style.height = "auto";
             
