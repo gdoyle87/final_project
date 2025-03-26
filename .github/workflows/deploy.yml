@@ -16,8 +16,11 @@ jobs:
         mkdir dist
         shopt -s extglob
         cp -r !(dist) dist/
-        find dist -type f -name "*.html" -exec sed -i 's|href="/|href="/final_project/|g' {} +
-        find dist -type f -name "*.html" -exec sed -i 's|src="/|src="/final_project/|g' {} +
+        find dist -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i \
+          -e 's|src="/|src="/final_project/|g' \
+          -e 's|href="/|href="/final_project/|g' \
+          -e 's|fetch("/|fetch("/final_project/|g' \
+          -e 's|url(/|url(/final_project/|g' {} +
 
     - name: 🚀 Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
