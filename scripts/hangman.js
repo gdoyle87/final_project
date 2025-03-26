@@ -11,7 +11,7 @@ $guesses = $("#guesses");
 $winMsg = $("#win_msg");
 $loseMsg = $("#lose_msg");
 $flag = $("#flag");
-
+$playAgainBtn = $('#play-again');
 
 const can_flag = "/images/can_flag.svg"
 const us_flag = "/images/us_flag.svg"
@@ -112,7 +112,9 @@ function startGame(word) {
         } else {
             html +=`<li class="letter">${letter}</li>`
         }
+    $playAgainBtn.attr('hidden', 'true');
     })
+
     $letterList.html(html); 
 }
 function checkGuess() {
@@ -122,6 +124,7 @@ function checkGuess() {
         console.log("You win!");
         $btn.attr('disabled', 'disabled');
         $winMsg.removeAttr('hidden');
+        playAgainBtn.removeAttr('hidden');
         load_flag(can_flag);
     }
     else{ console.log("Guess: ", sortedGuess, " Word: ", sortedWord)}
@@ -131,6 +134,7 @@ function loseGame() {
     $btn.attr("disabled", "disabled");
     load_flag(us_flag);
     $loseMsg.removeAttr('hidden');
+    $playAgainBtn.removeAttr('hidden');
 
 }
 
@@ -171,6 +175,22 @@ function load_flag(flag) {
 
 }
 $start.on('click', function() {
+    getWords();
+    loadMap();
+    annexationQueue = generateAnnexationOrder();
+    $btn.each(function() {
+        $(this).removeAttr('disabled');
+    });
+    $flag.html("");
+    guesses = 0;
+    $guesses.text(guesses);
+    $winMsg.attr('hidden', true);
+    $loseMsg.attr('hidden', true);
+    getNews();
+
+})
+
+$playAgainBtn.on('click', function() {
     getWords();
     loadMap();
     annexationQueue = generateAnnexationOrder();

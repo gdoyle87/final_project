@@ -410,6 +410,11 @@ footer {
   margin-block: 0.25rem;
 }
 
+#play-again {
+  padding-block: 0.25rem;
+  margin-top: 0.25rem;
+}
+
 .taken {
   fill: blue;
 }
