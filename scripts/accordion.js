@@ -4,10 +4,14 @@ const $show = $('#show');
 const $hide = $('#hide');
 
 
-const isOpen = localStorage.getItem('accordionOpen') === "true";
-console.log(isOpen, localStorage.getItem('accordionOpen'));
+let isOpen = localStorage.getItem('accordionOpen');
 
-if (isOpen) {
+if (isOpen === null) {
+    console.log('nothing in local storage, setting to true')
+    isOpen = 'true';
+    localStorage.setItem('accordionOpen', isOpen);
+}
+if (isOpen === 'true') {
 $details.show();
   $show.addClass('hidden');
   $hide.removeClass('hidden');
