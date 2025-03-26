@@ -14,7 +14,8 @@ jobs:
     - name: 🛠️ Prepare deployment folder with fixed paths
       run: |
         mkdir dist
-        cp -r * dist/
+        shopt -s extglob
+        cp -r !(dist) dist/
         find dist -type f -name "*.html" -exec sed -i 's|href="/|href="/final_project/|g' {} +
         find dist -type f -name "*.html" -exec sed -i 's|src="/|src="/final_project/|g' {} +
 
