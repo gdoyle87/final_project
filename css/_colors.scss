@@ -1,0 +1,86 @@
+// Base variables (these could be overridden elsewhere)
+$default-hue: 42 !default;
+$default-saturation: 100% !default;
+$default-darkness: 50% !default;
+
+// Light theme color definitions
+$light-colors: (
+  "bg1": hsl($default-hue, 25%, 90%),
+  "bg2": hsl($default-hue, 20%, 99%),
+  "bg3": hsl($default-hue, 20%, 92%),
+  "bg4": hsl($default-hue, 20%, 85%),
+  "text1": hsl($default-hue, $default-saturation, 10%),
+  "text2": hsl($default-hue, 85%, 25%),
+  "text3": hsl($default-hue, 10%, 80%)
+);
+
+// Dark theme color definitions
+$dark-colors: (
+  "bg1": hsl($default-hue, 10%, 10%),
+  "bg2": hsl($default-hue, 10%, 15%),
+  "bg3": hsl($default-hue, 5%, 20%),
+  "bg4": hsl($default-hue, 5%, 25%),
+  "text1": hsl($default-hue, 15%, 85%),
+  "text2": hsl($default-hue, 5%, 65%),
+  "text3": hsl($default-hue, 5%, 15%)
+);
+
+// Wave image URLs
+$wave-images: (
+  "light": (
+    "wave1": url("../imgs/wave1.svg"),
+    "wave2": url("../imgs/wave2.svg")
+  ),
+  "dark": (
+    "wave1": url("../imgs/wave1-dark.svg"),
+    "wave2": url("../imgs/wave2-dark.svg")
+  )
+);
+
+// Root styles
+:root {
+  // Default variables
+  --default-hue: #{$default-hue};
+  --default-saturation: #{$default-saturation};
+  --default-darkness: #{$default-darkness};
+
+  // Light theme variables
+  @each $key, $value in $light-colors {
+    --light-#{$key}: #{$value};
+  }
+
+  // Dark theme variables
+  @each $key, $value in $dark-colors {
+    --dark-#{$key}: #{$value};
+  }
+
+  // Default to light theme
+  color-scheme: light;
+  --bg-color1: var(--light-bg1);
+  --bg-color2: var(--light-bg2);
+  --bg-color3: var(--light-bg3);
+  --bg-color4: var(--light-bg4);
+  --bg-color5: var(--dark-bg4); // Note: This uses dark-bg4 as in your original
+  --text-color1: var(--light-text1);
+  --text-color2: var(--light-text2);
+  --text-color3: var(--light-text3);
+  --wave1-url: map-get(map-get($wave-images, "light"), "wave1");
+  --wave2-url: map-get(map-get($wave-images, "light"), "wave2");
+}
+
+// Dark mode media query
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg-color1: var(--dark-bg1);
+    --bg-color2: var(--dark-bg2);
+    --bg-color3: var(--dark-bg3);
+    --bg-color4: var(--dark-bg4);
+    --bg-color5: var(--light-bg4); // Note: This uses light-bg1 as in your original
+    --text-color1: var(--dark-text1);
+    --text-color2: var(--dark-text2);
+    --text-color3: var(--dark-text3);
+    --wave1-url: map-get(map-get($wave-images, "dark"), "wave1");
+    --wave2-url: map-get(map-get($wave-images, "dark"), "wave2");
+  }
+}

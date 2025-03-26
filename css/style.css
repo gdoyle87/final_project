@@ -1,0 +1,463 @@
+:root {
+  --default-hue: 42;
+  --default-saturation: 100%;
+  --default-darkness: 50%;
+  --light-bg1: hsl(42, 25%, 90%);
+  --light-bg2: hsl(42, 20%, 99%);
+  --light-bg3: hsl(42, 20%, 92%);
+  --light-bg4: hsl(42, 20%, 85%);
+  --light-text1: hsl(42, 100%, 10%);
+  --light-text2: hsl(42, 85%, 25%);
+  --light-text3: hsl(42, 10%, 80%);
+  --dark-bg1: hsl(42, 10%, 10%);
+  --dark-bg2: hsl(42, 10%, 15%);
+  --dark-bg3: hsl(42, 5%, 20%);
+  --dark-bg4: hsl(42, 5%, 25%);
+  --dark-text1: hsl(42, 15%, 85%);
+  --dark-text2: hsl(42, 5%, 65%);
+  --dark-text3: hsl(42, 5%, 15%);
+  color-scheme: light;
+  --bg-color1: var(--light-bg1);
+  --bg-color2: var(--light-bg2);
+  --bg-color3: var(--light-bg3);
+  --bg-color4: var(--light-bg4);
+  --bg-color5: var(--dark-bg4);
+  --text-color1: var(--light-text1);
+  --text-color2: var(--light-text2);
+  --text-color3: var(--light-text3);
+  --wave1-url: map-get(map-get($wave-images, "light"), "wave1");
+  --wave2-url: map-get(map-get($wave-images, "light"), "wave2");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg-color1: var(--dark-bg1);
+    --bg-color2: var(--dark-bg2);
+    --bg-color3: var(--dark-bg3);
+    --bg-color4: var(--dark-bg4);
+    --bg-color5: var(--light-bg4);
+    --text-color1: var(--dark-text1);
+    --text-color2: var(--dark-text2);
+    --text-color3: var(--dark-text3);
+    --wave1-url: map-get(map-get($wave-images, "dark"), "wave1");
+    --wave2-url: map-get(map-get($wave-images, "dark"), "wave2");
+  }
+}
+.bg1 {
+  background-color: var(--bg-color1);
+}
+
+.bg2 {
+  background-color: var(--bg-color2);
+}
+
+.bg3 {
+  background-color: var(--bg-color3);
+}
+
+.bg4 {
+  background-color: var(--bg-color4);
+}
+
+.bg5 {
+  background-color: var(--bg-color5);
+}
+
+.right-align {
+  margin-right: auto;
+}
+
+.inverted-contrast-text {
+  color: var(--text-color3);
+}
+
+.inverted-contrast-text .dashboard {
+  color: var(--text-color1);
+}
+
+.bottom-pad {
+  padding-bottom: 100px;
+}
+
+/* Set default / changes to all sections */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a, button {
+  text-decoration: none;
+}
+
+/* remove list bulleting unless in an article and remove padding */
+menu:not(article menu),
+ol:not(article ol),
+ul:not(article ul) {
+  list-style: none;
+}
+
+menu,
+ol,
+ul {
+  padding-left: 0;
+}
+
+article ol,
+article ul {
+  list-style-position: inside;
+}
+
+/* Body Formatting */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: "JetBrains Mono", sans-serif;
+  color: var(--text-color1);
+  background-color: var(--bg-color1);
+}
+
+h3 {
+  color: var(--text-color1);
+}
+
+/* Header Formatting */
+.header {
+  width: 100%;
+  padding: 0.5rem 3rem;
+  margin-inline: auto;
+  margin-bottom: -10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.header__logo {
+  margin-right: auto;
+}
+.header__logo-name {
+  fill: var(--text-color1);
+}
+
+/* Header Nav Formatting */
+.nav {
+  display: flex;
+}
+.nav__list {
+  list-style: none;
+  flex: 1;
+}
+.nav__item {
+  display: inline-block;
+  padding: 0 20px;
+}
+.nav__link {
+  color: var(--text-color1);
+  transition: all 0.3s ease 0s;
+}
+.nav__link:hover {
+  color: #aaaaaa;
+}
+
+/* Current Page Link Styles */
+.current-page {
+  color: #0088a9;
+  pointer-events: none;
+  cursor: default;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: [full-width-start] minmax(2rem, 1fr) [breakout-start] minmax(0, 7.5ch) [content-start] min(100% - 4rem, 70ch) [content-end] minmax(0, 7.5ch) [breakout-end] minmax(2rem, 1fr) [full-width-end];
+}
+.content-grid > :not(.breakout, .full-width),
+.content-grid .full-width > :not(.breakout, .full-width) {
+  grid-column: content;
+}
+.content-grid > .breakout {
+  grid-column: breakout;
+}
+.content-grid > .full-width {
+  grid-column: full-width;
+}
+
+#hangman {
+  display: flex;
+  flex-direction: row;
+}
+
+#map {
+  flex-basis: 80%;
+}
+
+.wave1,
+.wave2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave1 svg {
+  position: relative;
+  display: block;
+  width: calc(148% + 1.3px);
+  height: 59px;
+}
+
+.wave2 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 69px;
+}
+
+.wave1 .shape-fill {
+  fill: var(--bg-color1);
+}
+
+.wave2 .shape-fill {
+  fill: var(--bg-color5);
+}
+
+#news-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ticker {
+  width: 100%;
+  min-width: 0;
+  flex-grow: 1;
+  height: 2rem;
+  font-size: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.ticker__inner {
+  display: flex;
+  gap: 1em;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  white-space: nowrap;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.breaking {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.breaking-svg {
+  width: clamp(4rem, 10vw, 6rem);
+  min-width: 100px;
+  height: auto;
+}
+
+#headline-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+}
+
+#headline {
+  display: inline-block;
+  font-size: 80%;
+  font-weight: bold;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.story-list {
+  margin: 0;
+  padding-inline: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.story-list li {
+  padding-inline: 1rem;
+}
+
+/* animation stuff (disabled by js if user has prefers-reduced-motion) */
+.ticker[data-animated=true] {
+  overflow: hidden;
+  /* fade the text out as it comes close to the shape - note colour used doesnt matter as its a mask*/
+  -webkit-mask: linear-gradient(90deg, transparent, white 5%);
+  mask: linear-gradient(90deg, transparent, white 5%);
+}
+
+.ticker[data-animated=true] .ticker__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+}
+
+/* some additional controls if for whatever reason we want to change direction or speed */
+.ticker[data-direction=right] {
+  --_animation-direction: reverse;
+}
+
+.ticker[data-direction=left] {
+  --_animation-direction: forwards;
+}
+
+.ticker[data-speed=fast] {
+  --_animation-duration: 15ms;
+}
+
+.ticker[data-speed=slow] {
+  --_animation-duration: 40ms;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+@media screen and (max-width: 900px) {
+  .breaking {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  #headline {
+    white-space: normal;
+  }
+}
+/* Footer styles */
+footer {
+  background-color: #4D4D4D;
+  color: #fff;
+  margin-top: auto;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 20px;
+}
+
+.footer {
+  display: table;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.letter-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.letter {
+  border-bottom: solid 1px black;
+  min-width: 1rem;
+  width: 2rem;
+  content-visibility: hidden;
+  margin-top: 1rem;
+}
+
+.guessed {
+  border-bottom: hidden;
+  content-visibility: auto;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateY(-0.5rem);
+  margin-top: 0;
+}
+
+#hint {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#start-game {
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem;
+}
+
+#start {
+  padding-block: 0.5rem;
+}
+
+.btn {
+  width: 1.5rem;
+  margin-block: 0.25rem;
+}
+
+#play-again {
+  padding-block: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.taken {
+  fill: blue;
+}
+
+.untaken {
+  fill: var(--bg-color5);
+}
+
+.accordion-header {
+  color: var(--text-color3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1em;
+  padding-block: 0.5em;
+  position: relative;
+  border: 1px solid var(--bg-color4);
+  cursor: pointer;
+}
+
+#show, #hide {
+  font-size: 0.8em;
+}
+
+.toggle-wrapper {
+  position: relative;
+  width: 4em;
+  height: 1em;
+}
+
+.toggle-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: right;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=style.css.map */

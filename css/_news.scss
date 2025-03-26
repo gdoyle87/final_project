@@ -1,0 +1,127 @@
+#news-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: hidden;
+}
+
+.ticker {
+	width: 100%;
+	min-width: 0;
+	flex-grow: 1;
+	height: 2rem;
+	font-size: 1rem; 
+	overflow: hidden;
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+}
+
+.ticker__inner {
+	display: flex;
+	gap: 1em;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	white-space: nowrap;
+	align-items: center;
+	font-size: .8em;
+}
+
+.breaking {
+	display: flex;
+	flex-direction: row;
+
+	align-items: center;
+	text-align: center;
+
+	margin-top: 1rem;
+}
+.breaking-svg {
+	width: clamp(4rem, 10vw, 6rem);
+	min-width: 100px;
+	height: auto;
+}
+
+#headline-wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex: 1;
+}
+
+#headline {
+	display: inline-block;
+	font-size: 80%;
+	font-weight: bold;
+	max-width: 100%;
+	white-space: nowrap;
+}
+
+.story-list {
+	margin: 0;
+	padding-inline: 0;
+	list-style: none;
+	text-align: center;
+}	
+
+.story-list li {
+	padding-inline: 1rem;
+
+}	
+
+/* animation stuff (disabled by js if user has prefers-reduced-motion) */
+.ticker[data-animated="true"] {
+	overflow: hidden;
+	/* fade the text out as it comes close to the shape - note colour used doesnt matter as its a mask*/ 
+	-webkit-mask: linear-gradient(90deg, transparent, white 5%);
+	mask: linear-gradient(90deg, transparent, white 5%);
+	
+}
+
+
+.ticker[data-animated="true"] .ticker__inner {
+	width: max-content;
+	flex-wrap: nowrap;
+	animation: scroll var(--_animation-duration, 40s) 
+		var(--_animation-direction, forwards) linear infinite;
+}
+
+
+/* some additional controls if for whatever reason we want to change direction or speed */
+.ticker[data-direction="right"] {
+	--_animation-direction: reverse;
+}
+
+.ticker[data-direction="left"] {
+	--_animation-direction: forwards;
+}
+
+
+.ticker[data-speed="fast"]{
+	--_animation-duration: 15ms;
+}
+
+.ticker[data-speed="slow"]{
+	--_animation-duration: 40ms;
+
+}
+
+
+@keyframes scroll {
+to { 
+	transform: translateX(calc(-50% - 0.5rem));
+}
+}
+
+@media screen and (max-width: 900px) {
+	.breaking {
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	#headline {
+		white-space: normal;
+	}
+}
