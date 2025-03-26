@@ -32,8 +32,11 @@ function getNews() {
             const tickerItems = data[level].ticker;
 
             const randomHeadline = headlines[Math.floor(Math.random() * headlines.length)];
-
-            $('#headline').text(randomHeadline);
+            let html = ``;
+            html += `<span id="headline">`;
+            html += randomHeadline;
+            html += `</span>`;
+            $('#headline-wrapper').html(html);
 
             $('.ticker').each(function() {
                 const $ticker = $(this);
