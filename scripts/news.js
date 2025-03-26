@@ -21,7 +21,7 @@ function addAnimation() {
 
 
 function getNews() {
-    fetch('/data/headlines.json')
+    fetch('/final_project/data/headlines.json')
         .then(response => response.json())
         .then(data => {
 
