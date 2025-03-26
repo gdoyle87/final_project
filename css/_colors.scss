@@ -26,16 +26,16 @@ $dark-colors: (
 );
 
 // Wave image URLs
-$wave-images: (
-  "light": (
-    "wave1": url("../imgs/wave1.svg"),
-    "wave2": url("../imgs/wave2.svg")
-  ),
-  "dark": (
-    "wave1": url("../imgs/wave1-dark.svg"),
-    "wave2": url("../imgs/wave2-dark.svg")
-  )
-);
+//$wave-images: (
+//  "light": (
+//    "wave1": url("../imgs/wave1.svg"),
+//    "wave2": url("../imgs/wave2.svg")
+//  ),
+//  "dark": (
+//    "wave1": url("../imgs/wave1-dark.svg"),
+//    "wave2": url("../imgs/wave2-dark.svg")
+//  )
+//);
 
 // Root styles
 :root {
@@ -64,8 +64,8 @@ $wave-images: (
   --text-color1: var(--light-text1);
   --text-color2: var(--light-text2);
   --text-color3: var(--light-text3);
-  --wave1-url: map-get(map-get($wave-images, "light"), "wave1");
-  --wave2-url: map-get(map-get($wave-images, "light"), "wave2");
+//  --wave1-url: map-get(map-get($wave-images, "light"), "wave1");
+//  --wave2-url: map-get(map-get($wave-images, "light"), "wave2");
 }
 
 // Dark mode media query
@@ -80,7 +80,7 @@ $wave-images: (
     --text-color1: var(--dark-text1);
     --text-color2: var(--dark-text2);
     --text-color3: var(--dark-text3);
-    --wave1-url: map-get(map-get($wave-images, "dark"), "wave1");
-    --wave2-url: map-get(map-get($wave-images, "dark"), "wave2");
+//    --wave1-url: map-get(map-get($wave-images, "dark"), "wave1");
+//    --wave2-url: map-get(map-get($wave-images, "dark"), "wave2");
   }
 }
