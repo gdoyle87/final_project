@@ -8,6 +8,9 @@
 .letter-list {
   @include flex-center;
   gap: 10px;
+  @media screen and (max-width:425px) {
+    min-width: .5rem;
+  }
 }
 
 .letter {

@@ -1,17 +1,19 @@
-$padding-inline: 2rem;
-$content-max-width: 70ch;
-$breakout-max-width: 85ch;
-$breakout-size: calc(($breakout-max-width - $content-max-width) / 2);
+@mixin content-grid-columns($padding-inline, $content-max-width, $breakout-max-width) {
+  $breakout-size: calc(($breakout-max-width - $content-max-width) / 2);
 
-// This will set up named areas full-width, breakout, and content that can be applied easily to any item
-.content-grid {
   display: grid;
+
   grid-template-columns:
-    [full-width-start] minmax($padding-inline, 1fr)
-    [breakout-start] minmax(0, $breakout-size)
-    [content-start] min(100% - $padding-inline * 2, $content-max-width) [content-end]
-    minmax(0, $breakout-size) [breakout-end] 
-    minmax($padding-inline, 1fr) [full-width-end];
+    [full-width-start] minmax(#{$padding-inline}, 1fr)
+    [breakout-start] minmax(0, #{$breakout-size})
+    [content-start] minmax(0, min(calc(100% - (#{$padding-inline} * 2)), #{$content-max-width})) [content-end]
+    minmax(0, #{$breakout-size}) [breakout-end]
+    minmax(#{$padding-inline}, 1fr) [full-width-end];
+}
+  // This will set up named areas full-width, breakout, and content that can be applied easily to any item
+
+.content-grid {
+  @include content-grid-columns(2rem, 70ch, 85ch);
 
   // Nesting grid column rules inside .content-grid
   > :not(.breakout, .full-width),
@@ -21,10 +23,18 @@ $breakout-size: calc(($breakout-max-width - $content-max-width) / 2);
 
   > .breakout {
     grid-column: breakout;
+
+    @media screen and (max-width: 525px) {
+      grid-column: full-width;
+    }
   }
 
   > .full-width {
     grid-column: full-width;
+  }
+
+  @media screen and (max-width: 725px) {
+    @include content-grid-columns(1rem, 90vw, 100vw);
   }
 }
 
@@ -32,6 +42,9 @@ $breakout-size: calc(($breakout-max-width - $content-max-width) / 2);
 #hangman {
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 #map {
