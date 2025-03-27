@@ -124,6 +124,10 @@ h3 {
   color: var(--text-color1);
 }
 
+hr {
+  width: 100%;
+}
+
 /* Header Formatting */
 .header {
   width: 100%;
