@@ -170,7 +170,7 @@ h3 {
 
 .content-grid {
   display: grid;
-  grid-template-columns: [full-width-start] minmax(2rem, 1fr) [breakout-start] minmax(0, 7.5ch) [content-start] min(100% - 4rem, 70ch) [content-end] minmax(0, 7.5ch) [breakout-end] minmax(2rem, 1fr) [full-width-end];
+  grid-template-columns: [full-width-start] minmax(2rem, 1fr) [breakout-start] minmax(0, 7.5ch) [content-start] minmax(0, min(100% - 2rem * 2, 70ch)) [content-end] minmax(0, 7.5ch) [breakout-end] minmax(2rem, 1fr) [full-width-end];
 }
 .content-grid > :not(.breakout, .full-width),
 .content-grid .full-width > :not(.breakout, .full-width) {
@@ -179,13 +179,29 @@ h3 {
 .content-grid > .breakout {
   grid-column: breakout;
 }
+@media screen and (max-width: 525px) {
+  .content-grid > .breakout {
+    grid-column: full-width;
+  }
+}
 .content-grid > .full-width {
   grid-column: full-width;
+}
+@media screen and (max-width: 725px) {
+  .content-grid {
+    display: grid;
+    grid-template-columns: [full-width-start] minmax(1rem, 1fr) [breakout-start] minmax(0, 5vw) [content-start] minmax(0, min(100% - 1rem * 2, 90vw)) [content-end] minmax(0, 5vw) [breakout-end] minmax(1rem, 1fr) [full-width-end];
+  }
 }
 
 #hangman {
   display: flex;
   flex-direction: row;
+}
+@media screen and (max-width: 500px) {
+  #hangman {
+    flex-direction: column;
+  }
 }
 
 #map {
@@ -365,6 +381,11 @@ footer {
   justify-content: center;
   gap: 10px;
 }
+@media screen and (max-width: 425px) {
+  .letter-list {
+    min-width: 0.5rem;
+  }
+}
 
 .letter {
   border-bottom: solid 1px black;
@@ -430,9 +451,19 @@ footer {
   border: 1px solid var(--bg-color4);
   cursor: pointer;
 }
+@media screen and (max-width: 525px) {
+  .accordion-header {
+    padding-inline: 0.25em;
+  }
+}
 
 #show, #hide {
   font-size: 0.8em;
+}
+@media screen and (max-width: 525px) {
+  #show, #hide {
+    font-size: 0.6em;
+  }
 }
 
 .toggle-wrapper {

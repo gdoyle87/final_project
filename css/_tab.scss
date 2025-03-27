@@ -8,10 +8,17 @@
   position: relative;
   border: 1px solid var(--bg-color4);
   cursor: pointer;
+
+  @media screen and (max-width: 525px) {
+    padding-inline: .25em;
+  }
 }
 
-#show, #hide {
+#show, #hide {  
   font-size: .8em;
+  @media screen and (max-width: 525px) {
+    font-size: .6em;
+  }
 }
 
 .toggle-wrapper {
@@ -34,3 +41,5 @@
   opacity: 0;
   pointer-events: none;
 }
+
+
