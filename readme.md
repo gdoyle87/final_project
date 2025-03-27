@@ -26,6 +26,8 @@ The project is a hangman-style word game set in a satirical version of Canada.
 - A **dynamic news ticker** appears at the bottom, showing headlines pulled from a JSON file.
   - Updates on every incorrect guess with new stories.
   - Headlines are randomized per playthrough.
+  - If the user has prefers-reduced-motion the animation will not play to respect user accessibility choices.
+    - Inspired by Kevin Powell's example here: [https://www.youtube.com/watch?v=iLmBy-HKIAw](https://www.youtube.com/watch?v=iLmBy-HKIAw)
 - A **"Play Again"** button appears after a win or loss to reset the game.
 - An accordion-style tab at the top can be toggled open/closed by clicking the heading.
   - Accordion state is saved to **localStorage** for persistence across refreshes.
@@ -38,7 +40,7 @@ The project is a hangman-style word game set in a satirical version of Canada.
   - 2 flags
   - 2 inline SVGs (logo and breaking shape)
   - 1 `favicon.ico`
-- Includes at least one **JavaScript-powered animation** (e.g. fade-in effect).
+- Includes **JavaScript-powered animation** (scrolling news ticker and slide in/out accordion).
 - Overall design uses **semantic HTML** for accessibility and structure.
 - Different colour scheme depending on whether user has **dark mode** set on their browser or not.
   - Feel free to give it a try by changing your browser settings.
