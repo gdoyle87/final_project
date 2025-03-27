@@ -6,6 +6,11 @@ The project is a hangman-style word game set in a satirical version of Canada.
 🎮 **Play the game here**:  
 👉 [https://gdoyle87.github.io/final_project/](https://gdoyle87.github.io/final_project/)
 
+- The project is deployed using **GitHub Pages**.
+- **GitHub Actions** automates the build process:
+  - Deploys to GitHub Pages on push
+  - Changes paths to include /final_project/ since the project is not posted in the root github pages
+
 ---
 
 ## 🔧 Technical Features
@@ -35,10 +40,10 @@ The project is a hangman-style word game set in a satirical version of Canada.
   - 1 `favicon.ico`
 - Includes at least one **JavaScript-powered animation** (e.g. fade-in effect).
 - Overall design uses **semantic HTML** for accessibility and structure.
+- Different colour scheme depending on whether user has **dark mode** set on their browser or not.
+  - Feel free to give it a try by changing your browser settings.
 
----
-
-## 🛠️ Code Quality
+### 🛠️ Code Quality
 
 - All code is written using **relative paths** only — no absolute or platform-specific paths.
 - HTML, CSS, and JavaScript are free from serious errors.
@@ -49,3 +54,7 @@ The project is a hangman-style word game set in a satirical version of Canada.
 - **SCSS (SASS)** is used to structure and maintain CSS.
   - Compiled CSS is included alongside the original `.scss` files.
   - `@mixin` is used (see `_word.scss` and `_layout.scss`).
+
+## 📢 Acknowledgments
+
+This project was built as a school assignment and is provided for educational purposes.
